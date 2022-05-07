@@ -194,7 +194,7 @@ fi
 # shellcheck disable=SC2086
 ${SUDO_CMD}rm -rf UMod
 # shellcheck disable=SC2086
-runout ${SUDO_CMD}git clone https://github.com/Netuzb/UMod|| {
+runout ${SUDO_CMD}git clone https://github.com/Netuzb/UModru|| {
 	errorout "Clone failed."
 	exit 3
 }
