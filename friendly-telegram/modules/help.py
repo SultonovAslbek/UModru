@@ -15,23 +15,23 @@ class HelpMod(loader.Module):
     """Yordam boʻlimi"""
 
     strings = {
-        "name": "1.UModYordam",
+        "name": "Помощь",
         "bad_module": "<b>📂 Modul topilmadi</b> <code>{}</code>",
-        "single_mod_header": "🥷 <b>Modul nomi:</b> {}\n<b>├╴╴╴╴╴╴╴╴╴╴</b>",
+        "single_mod_header": "🥷 <b>Имя модуля: </b> {}\n<b>├╴╴╴╴╴╴╴╴╴╴</b>",
         "single_cmd": "\n 👾 <b>{}{}</b> - ",
         "undoc_cmd": "📂 Hujjatlar yoʻq!",
-        "all_header": "🥷 <b>Umumiy modullar: <code>{}</code>\n🧟‍♀️ Berkitilganlari: <code>{}</code></b>",
+        "all_header": "🥷 <b>Общие модули: <code>{}</code>\n🧟‍♀️ Скрытые: <code>{}</code></b>",
         "mod_tmpl": "\n{} <b>{}</b>",
         "first_cmd_tmpl": ": [ <code>{}</code>",
         "cmd_tmpl": " | <code>{}</code>",
-        "args": "🚫 <b>Arglar noto'g'ri</b>",
-        "set_cat": "ℹ️ <b>{} toifasiga kiritilgan {}</b>",
-        "no_mod": "🥷 <b>Modul nomini yozing...</b>",
-        "hidden_shown": "<b>🥷 Berkitilgan modullar: {}\n🧟‍♀️ Koʻrsatilgan modullar: {}\n\n</b>{}{}",
+        "args": "🚫 <b>Аргументы неверны</b>",
+        "set_cat": "ℹ️ <b>{} входит в категорию {}</b>",
+        "no_mod": "🥷 <b>Введите имя модуля...</b>",
+        "hidden_shown": "<b>🥷 Скрытые модули: {}\n🧟‍♀️ Koʻrsatilgan modullar: {}\n\n</b>{}{}",
         "ihandler": "\n 👾 <b>{}</b> - ",
-        "undoc_ihandler": "📂 Hujjatlar yoʻq!!",
-        "joined": "😎 <b> Siz guruhga aʼzo boʻlib ulgurgansiz!</b>",
-        "join": "🥱 <b>UMod muhokama guruhiga aʼzo boʻling!\n\nBarcha muhokamalar faqat rasmiy guruhlarda boʻlib oʻtadi!</b>",
+        "undoc_ihandler": "📂 Нет документов!!",
+        "joined": "😎 <b> Вы уже являетесь участником группы!</b>",
+        "join": "🥱 <b>Присоединяйтесь к группе обсуждения UMod!\n\nВсе обсуждения проходят только в формальных группах!</b>",
     }
 
     def __init__(self):
@@ -84,8 +84,8 @@ class HelpMod(loader.Module):
             self.strings("hidden_shown").format(
                 len(hidden),
                 len(shown),
-                "\n".join([f"🔇 <b>Berk:</b> <i>{m}</i>" for m in hidden]),
-                "\n".join([f"🔈 <b>Olindi:</b> <i>{m}</i>" for m in shown]),
+                "\n".join([f"🔇 <b>Спрятано:</b> <i>{m}</i>" for m in hidden]),
+                "\n".join([f"🔈 <b>Открыто:</b> <i>{m}</i>" for m in shown]),
             ),
         )
 
@@ -125,7 +125,7 @@ class HelpMod(loader.Module):
             reply = self.strings("single_mod_header").format(utils.escape_html(name))
             if module.__doc__:
                 reply += (
-                    "<b>\n└ 🧟‍♀️ Modul vazifasi:</b> " + utils.escape_html(inspect.getdoc(module)) + "\n"
+                    "<b>\n└ 🧟‍♀️ Функция модуля:</b> " + utils.escape_html(inspect.getdoc(module)) + "\n"
                 )
 
             commands = {
