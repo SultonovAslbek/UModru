@@ -22,14 +22,14 @@ class UpdaterMod(loader.Module):
     """Updates itself"""
 
     strings = {
-        "name": "4.UModYangilash",
+        "name": "Обновление",
         "source": "<b>Manzil mavjud emas</b> <a href='{}'></a>",
-        "restarting_caption": "🥷 <b>Baza qayta ishga tushmoqda...</b>",
-        "downloading": "🥷 <b>Yangilanish yuklanmoqda...</b>",
-        "downloaded": "🥷 <b>Muvaffaqiyatli yuklandi.\n├╴╴╴╴╴╴╴╴╴╴\n└ 👾 Endi</b> <code>.restart</code> <b>qo'llang.</b>",
-        "already_updated": "🥷 <b>Muvaffaqiyatli yangilandi!</b>",
-        "installing": "🥷 <b>Yangilanish oʻrnatilmoqda...</b>",
-        "success": "🥷 <b>Muvaffaqiyatli yakunlandi!\n├╴╴╴╴╴╴╴╴╴╴\n└ 👾 Maʼlumot uchun: <code>.ftgver</code></b>",
+        "restarting_caption": "🥷 <b>База данных перезапускается...</b>",
+        "downloading": "🥷 <b>Обновление загружается...</b>",
+        "downloaded": "🥷 <b>Успешно загружено.\n├╴╴╴╴╴╴╴╴╴╴\n└ 👾 Теперь</b> <code>.restart</code>",
+        "already_updated": "🥷 <b>Успешно обновлено!</b>",
+        "installing": "🥷 <b>Устанавливается обновление...</b>",
+        "success": "🥷 <b>Успешно завершено!\n├╴╴╴╴╴╴╴╴╴╴\n└ 👾 Для информации: <code>.ftgver</code></b>",
         "heroku_warning": "📖 <b>Heroku Api token xatoligi. </b>Update was successful but updates will reset every time the bot restarts.",
         "origin_cfg_doc": "1234567890qweryeiwiskmsmsmsksmsmmsmd?",
         "lavhost": "📖 <b>Odam.</b>\n<i>This message <b>will not</b> be edited after restart is complete!</i>",
@@ -38,13 +38,13 @@ class UpdaterMod(loader.Module):
     def __init__(self):
         self.config = loader.ModuleConfig(
             "GIT_ORIGIN_URL",
-            "https://github.com/Netuzb/UMod",
+            "https://github.com/Netuzb/UModru",
             lambda m: self.strings("origin_cfg_doc", m),
         )
 
     @loader.owner
     async def restartcmd(self, message: Message) -> None:
-        """Qayta ishga tushirish"""
+        """Перезапустить юмод"""
         if os.environ.get("LAVHOST"):
             await utils.answer(message, self.strings("lavhost"))
             await self._client.send_message("@lavhostbot", "/restart")
@@ -80,7 +80,7 @@ class UpdaterMod(loader.Module):
 
     @loader.owner
     async def yangilashcmd(self, message: Message) -> None:
-        """Yangilanish yuklash"""
+        """Загрузка обновления"""
         message = await utils.answer(message, self.strings("downloading", message))
         await self.download_common()
         await utils.answer(message, self.strings("downloaded", message))
